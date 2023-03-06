@@ -2,3 +2,8 @@ logger:
   level: "DEBUG"
 runtime:
   js_entrypoint: "build/index.js"
+
+matchmaker:
+  max_tickets: 1
+  interval_sec: 5
+  max_intervals: 3
