@@ -1,6 +1,6 @@
 {
     "files": [
-        "src/main.ts",
+        "main.ts",
         "src/healthcheck.ts",
     ],
     "compilerOptions": {
