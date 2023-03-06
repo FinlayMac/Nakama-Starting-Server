@@ -1,6 +1,6 @@
 # Nakama-Starting-Server
 
-The Nakama Server to run the Networked Pong Prototype.
+The Nakama Server to run the [Networked Pong Prototype](https://github.com/FinlayMac/Networked-Pong). 
  
 It is a mostly unmodified server following the guide at: https://heroiclabs.com/docs/nakama/getting-started/install/docker/
  
