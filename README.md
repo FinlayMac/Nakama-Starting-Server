@@ -26,9 +26,18 @@ Install the node dependencies using: `npm install`
  
 Make sure you have Docker running.
  
-Inside the cloned folder, using a terminal run: `Docker compose up`
+Inside the cloned folder, using a terminal run: `docker-compose up --build nakama`
 
 Navigate to: `localhost:7351`
  
 Default login information is: username, password
 
+
+## Updating the Server:
+
+To update the server logic (new RPCs etc) run:  `docker-compose up -d --build nakama`
+
+
+## Stopping the Server:
+
+To stop the server run:  `docker compose stop`

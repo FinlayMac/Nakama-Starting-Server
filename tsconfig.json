@@ -1,7 +1,6 @@
 {
     "files": [
         "main.ts",
-        "src/healthcheck.ts",
     ],
     "compilerOptions": {
         "target": "es5",
@@ -13,5 +12,7 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    // includes the whole src folder so individual files dont need added
+    "include": ["src/**/*"],
 }
