@@ -6,7 +6,7 @@ COPY package*.json .
 RUN npm install
 COPY tsconfig.json .
 COPY *.ts .
-COPY src/*.ts /backend/src/ 
+COPY src/ /backend/src/ 
 RUN npx tsc
 
 FROM heroiclabs/nakama:3.3.0
