@@ -6,7 +6,7 @@ function rpcCanClaimDailyReward(
 
     var dailyReward = getLastDailyRewardObject(ctx, logger, nk, payload);
     var response = {
-        canClaimDailyReward: canUserClaimDailyReward(dailyReward)
+        result: canUserClaimDailyReward(dailyReward)
     }
 
     var result = JSON.stringify(response);
