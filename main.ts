@@ -6,6 +6,7 @@ function InitModule(
         initializer.registerRpc('healthcheck', rpcHealthcheck);
         initializer.registerRpc('canclaimdailyreward', rpcCanClaimDailyReward);
         initializer.registerRpc('claimdailyreward', rpcClaimDailyReward);
+        initializer.registerRpc('wingamestats', rpcWinGameStats);
         logger.info('JS module loaded');
 
 }

@@ -1,21 +1,24 @@
 function rpcClaimDailyReward(context: nkruntime.Context, logger: nkruntime.Logger, nk: nkruntime.Nakama, payload: string): string {
+    //assumes that the player will receive no coins first
     var response = { coinsReceived: 0 };
 
+    //finds when the player last claimed a reward
     var dailyReward = getLastDailyRewardObject(context, logger, nk, payload);
     if (canUserClaimDailyReward(dailyReward)) {
+        //update the response
         response.coinsReceived = 500;
 
         var changeset = {
             coins: response.coinsReceived,
         }
-
+        //try to update the coin amount in wallet
         try {
             nk.walletUpdate(context.userId, changeset, {}, false);
         } catch (error) {
             logger.error('walletUpdate error: %q', error);
             throw error;
         }
-
+        //creates a notification
         var notification: nkruntime.NotificationRequest = {
             code: 1001,
             content: changeset,
@@ -24,15 +27,16 @@ function rpcClaimDailyReward(context: nkruntime.Context, logger: nkruntime.Logge
             userId: context.userId,
         }
 
+        //trys to send the notification
         try {
             nk.notificationsSend([notification]);
         } catch (error) {
             logger.error('notificationsSend error: %q', error);
             throw error;
         }
-
+        //updates the last claimed time
         dailyReward.lastClaimUnix = msecToSec(Date.now());
-
+        //writes the value to the DB
         var write: nkruntime.StorageWriteRequest = {
             collection: 'reward',
             key: 'daily',
@@ -49,7 +53,7 @@ function rpcClaimDailyReward(context: nkruntime.Context, logger: nkruntime.Logge
 
         // Update daily reward storage object for user.
         try {
-            nk.storageWrite([ write ])
+            nk.storageWrite([write])
         } catch (error) {
             logger.error('storageWrite error: %q', error);
             throw error;
